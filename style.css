@@ -1,0 +1,100 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #007bff;
+  --section-bg: #f0f0f0;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --accent-color: #4dabf7;
+  --section-bg: #1e1e1e;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+header.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--section-bg);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+header p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+section {
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+}
+
+section h2 {
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--accent-color);
+  display: inline-block;
+}
+
+.skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  display: inline-block;
+  background: var(--section-bg);
+  margin: 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.projects .project {
+  margin-bottom: 30px;
+  background-color: var(--section-bg);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.projects .project h3 {
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--section-bg);
+  color: var(--text-color);
+}
+
+
+#theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 8px 15px;
+  background: var(--accent-color);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
