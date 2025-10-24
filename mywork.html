@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Work - Portfolio</title>
+  <meta name="description" content="Projects - Portfolio" />
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/css/main.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --section-spacing: 80px;
+      --card-spacing: 24px;
+      --border-radius: 16px;
+        /* shadow & motion tokens */
+        --card-shadow-soft: 0 6px 18px rgba(0,0,0,0.08);
+        --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+        --card-shadow-hover: 0 18px 48px rgba(0,0,0,0.14);
+        --card-elevate-transform: translateY(-8px) scale(1.02);
+    }
+
+    body.index-page.dark-background {
+      --accent-color: #34b7a7;
+      --card-bg: #ffffff;
+      --text-light: #666666;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --hover-transform: translateY(-8px);
+      --heading-color: #333333;
+      --background-color: #ffffff;
+    }
+
+    .container-main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-top {
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--heading-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(320px, 1fr));
+      gap: var(--card-spacing);
+      margin-bottom: var(--section-spacing);
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: visible;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      margin-bottom: 40px;
+      }
+      .project-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        overflow: visible;
+        box-shadow: var(--card-shadow-soft);
+        transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms cubic-bezier(.2,.9,.2,1);
+        position: relative;
+        margin-bottom: 40px;
+        font-family: var(--font-primary);
+        will-change: transform, box-shadow;
+      }
+    
+    .project-wrapper {
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      margin-bottom: 20px;
+    }
+
+    .project-card:hover {
+      transform: var(--hover-transform);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      }
+      /* hover and keyboard focus (accessibility) */
+      .project-card:hover,
+      .project-card:focus-within {
+        transform: var(--card-elevate-transform);
+        box-shadow: var(--card-shadow-hover);
+        z-index: 2;
+      }
+
+      /* provide a slightly smaller hover effect for images inside cards */
+      .project-card .project-image img {
+        transition: transform 420ms cubic-bezier(.2,.9,.2,1), filter 420ms ease;
+      }
+      .project-card:hover .project-image img,
+      .project-card:focus-within .project-image img {
+        transform: scale(1.06);
+        filter: saturate(1.06) contrast(1.02);
+      }
+
+    .project-image {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #34b7a7 0%, #ecf0efb9 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-category {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .project-subcategory {
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .project-type {
+      font-size: 1.25rem;
+      color: white;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .project-info {
+      padding: 24px;
+    }
+
+    .project-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--heading-color);
+    }
+
+    .project-info p {
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: var(--accent-color);
+      color: var(--background-color);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(216, 195, 76, 0.2);
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .project-description {
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+    }
+
+    .project-description h3 {
+      font-size: 1.5rem;
+      color: var(--heading-color);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .project-description p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-tags .tag {
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #f5f5f5;
+      color: var(--text-light);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    /* What I Do Section */
+    .services-section {
+      padding: var(--section-spacing) 0;
+      background: var(--background-color);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--card-spacing);
+      padding: 20px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      transition: transform 0.3s ease;
+      }
+      .service-card {
+        background: var(--card-bg);
+        padding: 32px;
+        border-radius: var(--border-radius);
+        text-align: center;
+        box-shadow: var(--card-shadow-soft);
+        transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms cubic-bezier(.2,.9,.2,1);
+        will-change: transform, box-shadow;
+      }
+
+    .service-card:hover {
+      transform: var(--hover-transform);
+      }
+      .service-card:hover,
+      .service-card:focus-within {
+        transform: var(--card-elevate-transform);
+        box-shadow: var(--card-shadow-hover);
+      }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      border-radius: 50%;
+      font-size: 28px;
+      color: var(--background-color);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotateY(180deg);
+    }
+
+    .service-card h3 {
+      color: var(--heading-color);
+      margin-bottom: 16px;
+      font-size: 1.25rem;
+    }
+
+    .service-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-info {
+        padding: 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+      /* Respect users who prefer reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .project-card,
+        .service-card,
+        .project-card .project-image img {
+          transition: none !important;
+          transform: none !important;
+        }
+      }
+  </style>
+</head>
+<body class="index-page dark-background">
+  <div class="container-main">
+    <div class="page-top">
+      <h1 class="page-title">My work</h1>
+      <p style="color:var(--text-light); margin:0;">A selection of my recent work</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Card 1 -->
+      <article class="project-card" data-aos="fade-up">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="assets/img/Screenshot 2025-10-24 114318.png"  alt="Branding Project">
+            <div class="project-overlay">
+              <h2 class="project-category">Branding & Illustration</h2>
+              <h3 class="project-subcategory"> Web Design</h3>
+              <a href="https://m-and-m-luxury-pg.netlify.app/" target="_blank"><span class="project-type">>><u><i>Click To View</i></u><<</span></a>
+              
+            </div>
+          </div>
+        </div>
+        <div class="project-description">
+          <h3>Creative Branding Solution</h3>
+          <p>A comprehensive branding Websiteproject that includes logo design, brand guidelines, and marketing materials. Created with modern Website principles and attention to detail and responsive design.</p>
+        </div>
+      </article>
+      <!-- Card 2 -->  
+      <article class="project-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="assets/img/Bangalore Anantapur.png" alt="Machine Learning">
+            <div class="project-overlay">
+              <h2 class="project-category">Graphic Design</h2>
+              <h3 class="project-subcategory">Youtube Thumbnails</h3>
+              <a href="https://youtube.com/@jaswanthreddy_02?si=AMbXQBXZCQuUyv0U" target="_blank"><span class="project-type">>><u><i>Click To View</i></u><<</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-description">
+          <h3>Creative Youtube Thumbnails</h3>
+          <p>A user-centric YouTube thumbnail design that strategically captures viewer attention through carefully balanced color moods, engaging gradients, and visual hierarchy to evoke curiosity and emotional connection.</p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="project-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="assets/img/epicmiles-sai.png" alt="Machine Learning">
+            <div class="project-overlay">
+              <h2 class="project-category">Graphic Design</h2>
+              <h3 class="project-subcategory">Youtube Thumbnails</h3>
+              <a href="https://www.youtube.com/@epicmileswithsai" target="_blank"><span class="project-type">>><u><i>Click To View</i></u><<</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-description">
+          <h3>Creative Youtube Thumbnails</h3>
+          <p>A user-centric YouTube thumbnail design that strategically captures viewer attention through carefully balanced color moods, engaging gradients, and visual hierarchy to evoke curiosity and emotional connection.</p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="project-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="assets/img/food menu.jpg" alt="Food Menu">
+            <div class="project-overlay">
+              <h2 class="project-category">Food Menu Card</h2>
+              <h3 class="project-subcategory">Marketing</h3>
+              <a href="https://drive.google.com/file/d/1TZe8dyngxSxjayye-WErwl3WSzDGpRKe/view?usp=sharing" target="_blank"><span class="project-type">>><u><i>Click To View</i></u><<</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-description">
+          <h3>Menu Card</h3>
+          <p>Strategic menu card design including layout, typography, and visual elements to enhance the dining experience.</p>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="project-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="assets/img/bread and egg logo.jpg" alt="Food Menu">
+            <div class="project-overlay">
+              <h2 class="project-category">Brand Logo</h2>
+              <h3 class="project-subcategory">Marketing</h3>
+              <a href="https://drive.google.com/file/d/12cZlXTbN-8rc4nVjnmgR6PYmVjPv9CFZ/view?usp=sharing" target="_blank"><span class="project-type">>><u><i>Click To View</i></u><<</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-description">
+          <h3>Logo Design</h3>
+          <p>Strategic logo design including layout, typography, and visual elements to enhance brand identity.</p>
+        </div>
+      </article>
+    </div>
+    <!-- What I Do Section -->
+  <section class="services-section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title" style="color: #34b7a7;">What I Do?</h2>
+      <div class="services-grid">
+
+
+        <!-- Service 2 -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-icon" style="color: #2e3a36;">
+            <i class="bi bi-window-desktop"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Building responsive and dynamic web applications using modern frameworks and technologies.</p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-icon" style="color: #2e3a36;">
+            <i class="bi bi-boxes"></i>
+          </div>
+          <h3>Graphic Design</h3>
+          <p>Designing visually appealing graphics and branding materials that communicate your message effectively.</p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-icon"  style="color: #2e3a36;">
+            <i class="bi bi-brush"></i>
+          </div>
+          <h3>Branding</h3>
+          <p>Developing cohesive brand identities that help businesses stand out in the market.</p>
+        </div>
+      </div>
+    </div>
+
+  <div style="margin-top:60px; text-align:center;">
+    <h2 style="color:#34b7a7; margin-bottom:20px;">Contact Me</h2>
+    <a href="index.html#contact" class="btn btn-primary" style="padding:12px 32px; border-radius:24px; font-size:1.1rem; background:#34b7a7; border:none; color:#fff; text-decoration:none;">
+      Go to Contact Form
+    </a>
+  </div>
+  </section>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script>
+    // initialize AOS if available
+    if(window.AOS) AOS.init();
+  </script>
+  </div>
+
+</body>
+</html>
