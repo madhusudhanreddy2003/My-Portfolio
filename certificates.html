@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Certificates</title>
+  <style>
+    /* =====================
+       RESET & BASE STYLES
+    ===================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #f9fafb, #e0e7ff);
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* =====================
+       HEADER
+    ===================== */
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #333;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* =====================
+       GALLERY GRID
+    ===================== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem 3rem;
+      width: 100%;
+      max-width: 1300px;
+    }
+
+    .certificate {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .certificate:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .certificate img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* =====================
+       MODAL STYLES
+    ===================== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 70px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.85);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close:hover {
+      color: #bbb;
+    }
+
+    /* =====================
+       RESPONSIVE DESIGN
+    ===================== */
+    @media (max-width: 1024px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      .gallery {
+        gap: 1rem;
+        padding: 0 1.5rem 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+        padding: 0 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Certificates</h1>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <!-- 20 Certificates -->
+      <div class="certificate"><img src="assets/certificates/Certificate of Appreciation Velammal Institute of Technology chennai_page-0001.jpg" alt="Certificate 1"></div>
+      <div class="certificate"><img src="assets/certificates/Certificate Of Excellence BY Narasimha Reddy College_page-0001.jpg" alt="Certificate 2"></div>
+      <div class="certificate"><img src="assets/certificates/Jarvis Project Expo 1st prize_page-0001.jpg" alt="Certificate 3"></div>
+      <div class="certificate"><img src="assets/certificates/VStand4U Certificate Madhu_page-0001.jpg" alt="Certificate 4"></div>
+      <div class="certificate"><img src="assets/certificates/Google AI-ML Internship Certificate Edu Skills.jpg" alt="Certificate 5"></div>
+      <div class="certificate"><img src="assets/certificates/Data Analysis With Python By IBM_page-0001.jpg" alt="Certificate 6"></div>
+      <div class="certificate"><img src="assets/certificates/Data Analysis With Python By APSSDC_page-0001.jpg" alt="Certificate 7"></div>
+      <div class="certificate"><img src="assets/certificates/Data Analysis With Python By Cognitive Class.ai_page-0001.jpg" alt="Certificate 8"></div>
+      <div class="certificate"><img src="assets/certificates/Robotic Process Automation (UI-Path) by Infosys ICT Academy_page-0001.jpg" alt="Certificate 9"></div>
+      <div class="certificate"><img src="assets/certificates/AI-ML Internship Certificate By BlackBucks_page-0001.jpg" alt="Certificate 10"></div>
+      <div class="certificate"><img src="assets/certificates/Full Stack Web Development Using MERN Stack By BlackBucks_page-0001.jpg" alt="Certificate 11"></div>
+      <div class="certificate"><img src="assets/certificates/Chatgpt and Prompt Engineering and Generative AI By BlackBucks_page-0001.jpg" alt="Certificate 12"></div>
+      <div class="certificate"><img src="assets/certificates/Enterprise Design Thinking Practitioner By IBM_page-0001.jpg" alt="Certificate 13"></div>
+      <div class="certificate"><img src="assets/certificates/Power BI Certificate Of Completion By Learn More Pro_page-0001.jpg" alt="Certificate 14"></div>
+      <div class="certificate"><img src="assets/certificates/Certificate of Completion AI Master Class By Freedom With AI_page-0001.jpg" alt="Certificate 15"></div>
+      <div class="certificate"><img src="assets/certificates/Anveshan 2k23_page-0001.jpg" alt="Certificate 16"></div>
+      <div class="certificate"><img src="assets/certificates/Caligraphy  competition_page-0001.jpg" alt="Certificate 17"></div>
+      <div class="certificate"><img src="assets/certificates/Fuzion 2k23 Sk University Certificate_page-0001.jpg" alt="Certificate 18"></div>
+      <div class="certificate"><img src="assets/certificates/JCT Collage Certificate of Merit_page-0001.jpg" alt="Certificate 19"></div>
+      <div class="certificate"><img src="assets/certificates/MIME Skit Performance_page-0001.jpg" alt="Certificate 20"></div>
+      <div class="certificate"><img src="assets/certificates/Paper Presentation Presto 2k23_page-0001.jpg" alt="Certificate 21"></div>
+      <div class="certificate"><img src="assets/certificates/Short film 1st Prize_page-0001.jpg" alt="Certificate 22"></div>
+      <div class="certificate"><img src="assets/certificates/Skit 1st prize_page-0001.jpg" alt="Certificate 23"></div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="fullImage" alt="Full Certificate">
+  </div>
+
+  <script>
+    // Modal Functionality
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("fullImage");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".certificate img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
