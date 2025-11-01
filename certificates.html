@@ -8,46 +8,31 @@
     /* =====================
        RESET & BASE STYLES
     ===================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
     body {
-      font-family: "Poppins", sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background: linear-gradient(135deg, #ecfffd, #f4faff);
       color: #222;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* =====================
-       HEADER
-    ===================== */
-    header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-    }
+    /* Header */
+    header { text-align: center; padding: 3rem 1rem 1.5rem; }
+    header h1 { font-size: 2.6rem; color: #333; letter-spacing: 1.2px; font-weight:700; }
 
-    header h1 {
-      font-size: 3rem;
-      color: #333;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-    }
-
-    /* =====================
-       GALLERY GRID
-    ===================== */
+    /* Gallery grid: responsive with consistent aspect ratio */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 0 2rem 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 0 1.5rem 3rem;
       width: 100%;
       max-width: 1300px;
     }
@@ -56,105 +41,59 @@
       background: #fff;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+      transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease;
       cursor: pointer;
-    }
-
-    .certificate:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .certificate img {
-      width: 100%;
-      height: 100%;
       display: block;
-      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      position: relative;
     }
 
-    /* =====================
-       MODAL STYLES
-    ===================== */
+    .certificate:focus { outline: 3px solid rgba(52,183,167,0.18); outline-offset: 6px; }
+    .certificate:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(16,24,40,0.12); }
+
+    .certificate img { width: 100%; height: 100%; display:block; object-fit: cover; }
+
+    /* Modal (centered, touch friendly) */
     .modal {
       display: none;
-      position: fixed;
+      position: fixed; inset: 0;
       z-index: 1000;
-      padding-top: 70px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.85);
-      animation: fadeIn 0.4s ease;
+      background-color: rgba(0,0,0,0.85);
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
+    .modal[aria-hidden="false"] { display:flex; }
 
     .modal-content {
-      display: block;
-      margin: auto;
-      max-width: 90%;
-      max-height: 85vh;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-      transition: transform 0.3s ease;
+      max-width: 100%; max-height: 85vh;
+      border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      width: auto; height: auto;
+      object-fit: contain;
     }
 
     .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s ease;
+      position: absolute; top: 18px; right: 18px;
+      background: rgba(255,255,255,0.06); border: none; color: #fff;
+      width: 44px; height: 44px; border-radius: 50%; font-size: 26px; cursor: pointer;
+      display: flex; align-items:center; justify-content:center;
     }
+    .close:focus { outline: 2px solid rgba(255,255,255,0.18); }
 
-    .close:hover {
-      color: #bbb;
-    }
+    /* Controls for next/prev (hidden by default, shown on wider screens) */
+    .nav-btn { position: absolute; top:50%; transform: translateY(-50%); background: transparent; border: none; color:#fff; font-size:36px; width:56px; height:56px; display:none; align-items:center; justify-content:center; }
+    .nav-btn.left { left: 14px; }
+    .nav-btn.right { right: 14px; }
+    @media (min-width: 680px) { .nav-btn { display:flex; } }
 
-    /* =====================
-       RESPONSIVE DESIGN
-    ===================== */
-    @media (max-width: 1024px) {
-      header h1 {
-        font-size: 2.5rem;
-      }
-      .gallery {
-        gap: 1rem;
-        padding: 0 1.5rem 2.5rem;
-      }
-    }
+    /* Responsive tweaks */
+    @media (min-width: 900px) { header h1 { font-size: 3rem; } .gallery { gap:1.5rem; } }
+    @media (max-width: 768px) { header h1 { font-size: 2.2rem; } .certificate { aspect-ratio: 3/2; } }
+    @media (max-width: 480px) { header h1 { font-size: 1.6rem; } .gallery { grid-template-columns: 1fr; padding: 0 1rem 2rem; } .certificate { aspect-ratio: 4/3; } }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-      .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      .gallery {
-        grid-template-columns: 1fr;
-        padding: 0 1rem 2rem;
-      }
-    }
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) { .certificate, .certificate img, .modal-content { transition: none !important; } }
   </style>
 </head>
 <body>
@@ -192,32 +131,86 @@
   </main>
 
   <!-- Modal -->
-  <div id="modal" class="modal">
-    <span class="close">&times;</span>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="close" aria-label="Close dialog">&times;</button>
+    <button class="nav-btn left" aria-label="Previous">&#8249;</button>
     <img class="modal-content" id="fullImage" alt="Full Certificate">
+    <button class="nav-btn right" aria-label="Next">&#8250;</button>
   </div>
 
   <script>
-    // Modal Functionality
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("fullImage");
-    const closeBtn = document.querySelector(".close");
+    // Enhanced Modal Functionality (keyboard + touch + a11y)
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('fullImage');
+    const closeBtn = modal.querySelector('.close');
+    const prevBtn = modal.querySelector('.nav-btn.left');
+    const nextBtn = modal.querySelector('.nav-btn.right');
+    const certificates = Array.from(document.querySelectorAll('.certificate'));
+    let currentIndex = -1;
+    let lastFocused = null;
 
-    document.querySelectorAll(".certificate img").forEach(img => {
-      img.addEventListener("click", () => {
-        modal.style.display = "block";
-        modalImg.src = img.src;
+    function openModal(index) {
+      currentIndex = index;
+      lastFocused = document.activeElement;
+      modal.setAttribute('aria-hidden', 'false');
+      modalImg.src = certificates[index].querySelector('img').src;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.style.display = 'none';
+      modalImg.src = '';
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function showNext() {
+      if (certificates.length === 0) return;
+      currentIndex = (currentIndex + 1) % certificates.length;
+      modalImg.src = certificates[currentIndex].querySelector('img').src;
+    }
+
+    function showPrev() {
+      if (certificates.length === 0) return;
+      currentIndex = (currentIndex - 1 + certificates.length) % certificates.length;
+      modalImg.src = certificates[currentIndex].querySelector('img').src;
+    }
+
+    // Wire up certificate tiles for click and keyboard
+    certificates.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.addEventListener('click', () => openModal(i));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(i); }
       });
     });
 
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    // Close when clicking backdrop
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const isOpen = modal.getAttribute('aria-hidden') === 'false';
+      if (!isOpen) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
     });
 
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
+    // Simple touch swipe detection for modal image
+    let touchStartX = 0;
+    modalImg.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].clientX; });
+    modalImg.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { if (dx < 0) showNext(); else showPrev(); }
     });
   </script>
 </body>
